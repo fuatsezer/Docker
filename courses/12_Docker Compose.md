@@ -21,12 +21,32 @@ Pip'i kurmak için aşağıdaki komutları çalıştırın
 ```python
 import redis
 from flask import Flask
+import time
 
 app = Flask(__name__)
 
+cache = redis.Redis(host="localhost",port=6379)
+
+def get_hit_count():
+    retries=5
+    while True:
+        try: 
+            return cache.incr("hits")
+        except redis.exceptions.ConnectionError as exc:
+            if retries == 0:
+                raise exc
+            retries -= 1
+            time.sleep(0.5)
+
+
+
 @app.route("/")
 def hello():
-    return "<h1>Hello Flask App</h1>"
+    count = get_hit_count()
+    return "<h1>Hello Flask App. You have visited {} times</h1>".format(count)
+
+if __name__ == '__main__':
+    app.run(host='0.0.0.0', debug=True, port=5000)
 ```
 Flask uygulamasını çalıştırma
 ```console
