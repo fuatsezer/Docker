@@ -1,0 +1,17 @@
+# İmajı Docker Hub'a Göndermek
+Sistemimizde varolan docker imajlarını listelemek
+```console
+[fuatsezer@localhost ~]$ docker images
+```
+Docker'a login olalım
+```console
+[fuatsezer@localhost ~]$ docker login
+```
+Docker huba gönderme komutu
+```console
+[fuatsezer@localhost ~]$ docker image push fuatsezer/hellopython:2023-01
+```
+Docker imajın tagini değiştirme
+```console
+[fuatsezer@localhost ~]$ docker tag fuatsezer/hellopython:2023-01 fuatsezer/hellopython:2023-02
+```
