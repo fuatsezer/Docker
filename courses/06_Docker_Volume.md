@@ -52,8 +52,14 @@ Konteyneri volume ile kurma
 ```console
 docker run --name postgresql -e POSTGRES_USER=fuatsezer -e POSTGRES_PASSWORD=GBfvdcsxaz123 -v v_postgresql_10:/var/lib/postgresql/data -d postgres:10
 ```
-
-
+Database'e bağlanan komut;
+```console
+fuatsezer=# \c
+```
+Database'deki tabloları listeleyen komut;
+```console
+fuatsezer=# \dt
+```
 
 
 
